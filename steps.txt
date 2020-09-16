@@ -1,0 +1,8 @@
+1- to download react app and run it : 
+    . open terminal -> type: npm install -g create-react-app
+    . type: npx create-react-app project-name
+    . cd project name 
+    . type: npm start
+    . start  working on your project :) 
+
+2- create a project on firebase
