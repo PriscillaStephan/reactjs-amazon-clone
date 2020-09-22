@@ -2,14 +2,29 @@ import React from "react";
 import "./App.css";
 import Header from "./Header";
 import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Checkout from "./Checkout";
 
 function App() {
   return (
     //BEM naming convention
-    <div className="app">
-      <Header />
-      <Home />
-    </div>
+    <Router>
+      <div className="app"> 
+      <Header/>
+      
+        <Switch>
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+          
+          {/*Default Route should be always in 
+          the buttom and i can have as many route as i want*/}
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
