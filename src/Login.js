@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
-  import "./Login.css";
-import {Link}  from "react-router-dom";
+import "./Login.css";
+import {Link, useHistory}  from "react-router-dom";
+import {auth} from "./firebase";
+
+/**created by Priscilla Stephan*/
 
 function Login() {
+    //it allows to programatically change the url after they login
+    const history =  useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+ //firebase login ....
     const signIn = e => {
         //to prevent refresh when the user clicks submit 
         e.preventDefault();
 
-        //firebase login ....
+        auth.signInWithEmailAndPassword(email, password)
+            .then(auth => {
+                history.push('/')
+            })
+       .catch(error => alert(error.message))
     }
 
+   //firebase register ....
     const register = e => {
         e.preventDefault();
 
-        //firebase register ....
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                //it successfully created a new user with email and password
+                console.log(auth);
+                if (auth) {
+                    history.push('/')
+                }
+            })
+            .catch(error => alert(error.message))
     }
 
     return (

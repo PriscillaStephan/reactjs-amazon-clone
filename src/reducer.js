@@ -1,5 +1,6 @@
  export const initialState = {
      basket: [],
+     user: null
  };
 
 // Selector - reduce function
@@ -38,6 +39,13 @@ export const getBasketTotal = (basket) =>
                 basket: newBasket
             }
             
+            //the case to listen to the user (the listener in the app.js) 
+            case "SET_USER":
+                return {
+                    ...state,
+                    user: action.user
+                }
+
             default:
                 return state;
      } 
